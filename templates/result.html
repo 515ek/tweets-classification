@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Result
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="bs-docs-section">
+      <div class="row">
+        <div class="bs-component">
+          <div class="page-header">
+            <h3> Wordcloud for <span class="text-success"> {{ result['sname'] }} </span> from <span class="text-success"> {{ result['ntweets'] }} </span> tweets </h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-component">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <img class= "img-fluid" src="{{url_for('static', filename= 'ml_files/wordcloud.png')}}" alt="Wordcloud" >
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bs-docs-section">
+      <div class="bs-component">
+        <div class="row">
+          <h3>
+            Classification of tweets
+          </h3>
+        </div>
+      </div>
+      <div class="bs-component">
+        {% for report in result['classification_report'] %}
+          <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+              <p class="text-justify">{{ report['tweet'] }}</p>
+            </div>
+
+            {% if report['predict'] == 1 %}
+            <div class="col-lg-2 col-md-2 col-sm-2">
+              <p class="text-success"> Positive Sentiment </p>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2">
+              <p class="text-success">{{ report['prob'] }}</p>
+            </div>
+            {% endif %}
+            {% if report['predict'] == 0 %}
+            <div class="col-lg-2 col-md-2 col-sm-2">
+              <p class="text-danger"> Negative Sentiment </p>
+            </div>
+
+            <div class="col-lg-2 col-md-2 col-sm-2">
+              <p class="text-danger">{{ report['prob'] }}</p>
+            </div>
+            {% endif %}
+
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+  </div>
+{% endblock %}

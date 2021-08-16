@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<title>{% block title %}{% endblock %} - Tweets Classification</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='custom.min.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script defer src="{{ url_for ('static', filename='fontawesome/js/all.min.js')}}"></script>
+
+
+
+
+
+
+  <body class="">
+
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">Tweets Classification</a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarColor02">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link {% block nav1 %} {% endblock %}" href="/">Home
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block nav2 %} {% endblock %}" href="/modeleval">Model Evaluation</a>
+              <!-- <span class="sr-only visually-hidden">(current)</span> -->
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% block nav3 %} {% endblock %}" href="/about">About</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav ms-md-auto">
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://github.com/515ek/tweets-classification">
+                <i class="fab fa-github fa-fw ">
+                </i>
+                GitHub
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/515ek/">
+                <i class="fab fa-linkedin-in fa-fw ">
+                </i>
+                LinkedIn
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" target="_blank" rel="noopener" href="https://www.kaggle.com/v2surya">
+                <i class="fab fa-kaggle fa-fw">
+                </i>
+                Kaggle
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}{% endblock %}
+
+
+    <script src="{{ url_for('static', filename='plugins/popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='custom.js') }}"></script>
+    <script src="{{ url_for('static', filename='plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+  </body>
+
+  </html>
