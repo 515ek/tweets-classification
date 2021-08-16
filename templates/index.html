@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home
+{% endblock %}
+{% block nav1 %} active {% endblock %}
+
+{% block content %}
+  <div class="container">
+
+    <div id="banner" class="page-header">
+          <div class="form-group">
+            <form action='/search' method="POST">
+              <div class="row">
+                <div class="col-lg-8 col-md-7 col-sm-6">
+                  <input class="form-control" id= "search_key" name="search_key" type="text" placeholder="Enter the phrase to search tweets">
+                </div>
+                <div class="col-lg-4 col-md-5 col-sm-6">
+                  <button class="btn btn-primary " type="submit">Search </button>
+                </div>
+              </div>
+            </form>
+          </div>
+    </div>
+
+    <div class="bs-docs-section">
+      <div class="page-header">
+        <div class="row">
+          <div class="col-lg-12">
+            <h1>Top 5 Trends Available</h1>
+          </div>
+        </div>
+      </div>
+
+    {% if twitter_trends %}
+    <div class="bs-component">
+      <div class="row">
+        {% for key, value in twitter_trends.items() %}
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="card border-primary mb-3">
+              <div class="card-header">
+                <h4 class="card-title">Trending {{ key }} </h4>
+              </div>
+              <div class="card-body">
+                
+                <ul>
+                  {% for val in value %}
+                  <li class="text-info">
+                    <a href="{{ url_for('classify_tweets', skey = val['query'] + ',' + val['name'] ) }}" class="nav-link" >
+                      {{ val['name'] }} 
+                      <!-- {{ val['query'] }} -->
+                    </a>
+                  </li>
+                  {% endfor %}
+                </ul
+                >
+              </div>
+            </div>
+
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+
+  </div>
+{% endblock %}
+

@@ -1,0 +1,5 @@
+The aim of the application is to classify tweets as negative or postive sentiment.
+The landing page provides the option to search for the tweets including specific topic or to pick any one of the either globally trending or trending in india topics.
+Application retrieves the 20 popular tweets of the selected topic and classify them as positive or negative sentiments, With the probability score for the prediction. 
+The WordCloud image displays the frequency of the words used in the collection of tweets being classified.
+The Evaluation of the Machine Learning Model that is Used to classify tweets Can be accesed using Model Evaluation tab.

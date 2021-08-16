@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title%}
+  Model Evaluation
+{% endblock %}
+{% block nav2 %} active {% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="page-header">
+      <h1 class="text-info">
+        Evaluation result of model used to classify tweets
+      </h1>
+    </div>
+
+    <div class="bs-docs-section">
+      <div class="bs-component">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <h4 class="text-info">
+              Classification Report
+            </h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="bs-component">
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-3">
+
+          </div>
+          {% for key in result['cls_report']['0'].keys() %}
+          {% if key != 'support'%}
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              <h5 class="text-success"> {{ key }} </h5>
+            </div>
+          {% endif %}
+          {% endfor %}
+        </div>
+
+        {% for key, value in result['cls_report'].items() %}
+        {% if key != 'accuracy' %}
+          <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3">
+              {% if key == '0' %}
+              <h5 class="text-success"> Negative Sentiment </h5>
+              {% elif key == '1' %}
+              <h5 class="text-success"> Positive Sentiment </h5>
+              {% else %}
+              <h5 class="text-success"> {{ key }} </h5>
+              {% endif %}
+            </div>
+            {% for vkey, vval in value.items() %}
+            {% if vkey != 'support' %}
+              <div class="col-lg-3 col-md-3 col-sm-3">
+                <p> {{ "%.2f"|format(vval) }} </p>
+              </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        {% endfor %}
+
+      </div>
+
+      <div class="bs-component">
+        <div class="row">
+          <h4 class="text-justify text-info">
+            Accuracy of the Model is: {{ "%.2f"|format(result['cls_report']['accuracy'] * 100) }} %
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="bs-docs-section">
+      <div class="row">
+        <div class="col-lg-12">
+          <h4 class="text-info"> Confusion Matrix of the model [ Normalized ] </h4>
+        </div>
+      </div>
+
+      <div class="bs-component">
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <img class= "img-fluid" src="{{url_for('static', filename= 'ml_files/eval_confusion_matrix.png')}}" alt="Wordcloud" >
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="nav-item">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/515ek/">
+    <i class="fab fa-linkedin-in fa-fw ">
+    </i>
+    LinkedIn
+  </a>
+</li>
+<li class="nav-item">
+  <a class="nav-link" target="_blank" rel="noopener" href="https://www.kaggle.com/v2surya">
+    <i class="fab fa-kaggle fa-fw">
+    </i>
+    Kaggle
+  </a>
+</li>

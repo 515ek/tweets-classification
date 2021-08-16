@@ -99,6 +99,6 @@ ENV/
 /site
 
 #Custom project settings
-static/ml_files/
+static/ml_files/*.pkl
 data/
 .DS_Store
