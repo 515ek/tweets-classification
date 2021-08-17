@@ -35,5 +35,5 @@ jobs:
       with:
         app-name: 'mytweetclassification'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_9921006268cc42dcb70fe8cc5740c2fc }}
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_ecf32455c7f3433bb7db294499dae593 }}
         package: '.\app.zip'
